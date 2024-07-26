@@ -12,7 +12,7 @@ def news_results_page():
         abort(response.status_code, 'Something wrong')
     response = response.json()
     for news in response['articles']:
-        if news['source']['name'] != '[Removed]' and news['title'] != '[Removed]' and news['urlToImage'] != '[Removed]' and news['publishedAt'] != '[Removed]'  and news['url'] != '[Removed]':                
+        if news['source']['name'] != '[Removed]' and news['title'] != '[Removed]' and news['urlToImage'] != '[Removed]' and news['urlToImage'] and news['publishedAt'] != '[Removed]'  and news['url'] != '[Removed]':                
             n = News(source=news['source']['name'], title=news['title'], urlToImage=news['urlToImage'], publishedAt=news['publishedAt'], url=news['url'])
             results.append(n)
     return render_template('news_page.html', news = results)
