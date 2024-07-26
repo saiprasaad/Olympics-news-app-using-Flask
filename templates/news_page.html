@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block body %}
+<style>
+    .col-4 {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .card-body ul {
+        flex-grow: 1;
+    }
+
+    .btn {
+        margin-top: auto;
+    }
+</style>
+<div class="container">
+    <p class="display-2">Olympics Latest News</p>
+    <div class="row">
+        {% for data in news %}
+        <div class="col-4 d-flex align-items-stretch mb-4">
+            <div class="card w-100">
+                <img src={{data.urlToImage}} class="card-img-top" alt="Fissure in Sandstone" />
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{data.title}}</h5>
+                    <ul class="list-group list-group-light list-group-small flex-grow-1">
+                        <li class="list-group-item px-4">Source: {{data.source}}</li>
+                        <li class="list-group-item px-4">Published At: {{data.publishedAt[:10]}}</li>
+                        <li class="list-group-item px-4">Vestibulum at eros</li>
+                    </ul>
+                    <a href="{{data.url}}" class="btn btn-primary mt-auto" data-mdb-ripple-init>Read more</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
